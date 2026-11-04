@@ -4,69 +4,228 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Grove: grow a garden by staying focused</title>
-  <meta name="description" content="A focus timer that grows a plant while you work. Leave to get distracted and it withers.">
+  <meta name="description" content="A free focus timer that grows a plant while you work. Get distracted and it withers. Use it in your browser or as a Chrome extension that blocks distracting sites.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
   <link rel="stylesheet" href="shared/ui.css">
   <link rel="stylesheet" href="site.css">
 </head>
 <body>
   <header class="nav">
-    <a class="brand" href="index.html">🌱 Grove</a>
+    <a class="brand" href="#top">🌱 Grove</a>
     <nav>
       <a href="#features">Features</a>
-      <a href="#how">How it works</a>
+      <a href="#install">Get the extension</a>
+      <a href="#how">How to use</a>
+      <a href="#species">Species</a>
+      <a href="#faq">FAQ</a>
       <a class="btn" href="app.html">Start focusing</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <div>
-      <h1>Stay focused.<br>Grow a garden.</h1>
-      <p>Plant a seed when you start working. It grows while you focus and withers if you wander off to distracting sites.</p>
-      <div class="ctas">
-        <a class="btn" href="app.html">Open the web app</a>
-        <a class="btn ghost" href="#extension">Get the Chrome extension</a>
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Free · No account · Private</span>
+        <h1>Stay focused.<br>Grow a garden.</h1>
+        <p>Plant a seed when you start working. It grows while you focus and withers if you wander off to distracting sites. Every session adds a plant to your garden.</p>
+        <div class="ctas">
+          <a class="btn" href="app.html">▶ Try it now in your browser</a>
+          <a class="btn ghost" href="#install">🧩 Get the Chrome extension</a>
+        </div>
       </div>
-    </div>
-    <div class="stage" id="stage"></div>
-  </section>
+      <div class="stage" id="stage"></div>
+    </section>
 
-  <section class="section" id="features">
-    <h2>Everything you need to focus</h2>
-    <div class="features">
-      <div class="feature"><div class="ico">⏳</div><h3>Focus timer</h3><p>Choose 5 to 180 minutes. Your plant grows from seed to full size in real time.</p></div>
-      <div class="feature"><div class="ico">🚫</div><h3>Site blocking</h3><p>The extension blocks your distraction list until the session ends.</p></div>
-      <div class="feature"><div class="ico">🥀</div><h3>Real stakes</h3><p>Give up or leave the tab for too long and your plant withers. It stays in your grove as a reminder.</p></div>
-      <div class="feature"><div class="ico">🌈</div><h3>51 species, all free</h3><p>Plant any of 43 colorful species from day one. Earn 8 rare ones by hitting focus milestones.</p></div>
-      <div class="feature"><div class="ico">🏷️</div><h3>Tags</h3><p>Tag sessions as Study, Work, Reading, or your own labels.</p></div>
-      <div class="feature"><div class="ico">📊</div><h3>Stats &amp; streaks</h3><p>See daily totals, a 7-day chart, time per tag, and your streak.</p></div>
-    </div>
-  </section>
+    <!-- Garden demo -->
+    <section class="section">
+      <h2>Watch your garden grow</h2>
+      <p class="lead">Every focus session plants something new. Look back on your day, week, month or year and see how far you've come.</p>
+      <div class="garden-scene demo" id="demo-garden"></div>
+    </section>
 
-  <section class="section" id="how">
-    <h2>How it works</h2>
-    <ol class="steps">
-      <li><h3>Plant</h3>Pick a duration, a species, and a tag, then press <b>Plant &amp; focus</b>.</li>
-      <li><h3>Focus</h3>Blocked sites redirect to a reminder, and your plant keeps growing.</li>
-      <li><h3>Grow</h3>When the timer ends, the plant joins your grove. Keep going to earn rare species.</li>
-    </ol>
-  </section>
+    <!-- Features -->
+    <section class="section" id="features">
+      <h2>Everything you need to focus</h2>
+      <div class="features">
+        <div class="feature"><div class="ico">⏳</div><h3>Focus timer</h3><p>Choose 5 to 180 minutes. Your plant grows from seed to full size in real time.</p></div>
+        <div class="feature"><div class="ico">🚫</div><h3>Block distractions</h3><p>The extension blocks sites like YouTube, Reddit and Instagram until your session ends.</p></div>
+        <div class="feature"><div class="ico">🥀</div><h3>Real stakes</h3><p>Give up or get distracted and your plant withers. It stays in your garden as a reminder.</p></div>
+        <div class="feature"><div class="ico">🏝️</div><h3>Your garden</h3><p>See all your plants on a little island, by day, week, month, year or all time.</p></div>
+        <div class="feature"><div class="ico">🌈</div><h3>51 species</h3><p>43 colorful plants are free from day one. Earn 8 rare ones by hitting focus milestones.</p></div>
+        <div class="feature"><div class="ico">📊</div><h3>Stats &amp; streaks</h3><p>Total focus time, a 7-day chart, time per tag and your day streak.</p></div>
+        <div class="feature"><div class="ico">🏷️</div><h3>Tags</h3><p>Label sessions as Study, Work, Reading, or anything you like.</p></div>
+        <div class="feature"><div class="ico">🔒</div><h3>Private</h3><p>Everything stays on your device. There are no accounts, ads or tracking.</p></div>
+      </div>
+    </section>
 
-  <section class="section" id="extension">
-    <h2>Chrome extension</h2>
-    <div class="feature">
-      <p>Get the timer in your toolbar, with real site blocking. While the extension is in development, install it by:
-        opening <code>chrome://extensions</code>, turning on <b>Developer mode</b>, choosing <b>Load unpacked</b>,
-        and selecting the <code>extension/</code> folder.</p>
-    </div>
-  </section>
+    <!-- Growth stages -->
+    <section class="section">
+      <h2>From seed to tree</h2>
+      <p class="lead">Your plant grows the whole time you focus. Stay to the end and it's fully grown.</p>
+      <div class="stages" id="stages"></div>
+    </section>
 
-  <footer class="site">🌱 Grove · Grow something while you work</footer>
+    <!-- Two ways -->
+    <section class="section" id="choose">
+      <h2>Two ways to use Grove</h2>
+      <div class="two">
+        <div class="option">
+          <div class="ico">🌐</div>
+          <h3>In your browser</h3>
+          <p class="tagline">Nothing to install. Works on any device.</p>
+          <ul>
+            <li>✅ Focus timer and growing plants</li>
+            <li>✅ Garden, stats and all species</li>
+            <li>✅ Works on phones, tablets, and in Safari and Firefox</li>
+            <li>⚠️ Leaving the tab for more than 10 seconds withers your plant</li>
+            <li>❌ Can't block other websites</li>
+          </ul>
+          <a class="btn" href="app.html">Open the web app</a>
+        </div>
+        <div class="option featured">
+          <span class="badge">Best for deep focus</span>
+          <div class="ico">🧩</div>
+          <h3>Chrome extension</h3>
+          <p class="tagline">Lives in your toolbar and blocks distractions.</p>
+          <ul>
+            <li>✅ Everything in the web version</li>
+            <li>✅ Blocks distracting sites during a session</li>
+            <li>✅ Browse other tabs freely while you work</li>
+            <li>✅ Notification when your plant is grown</li>
+            <li>ℹ️ Works in Chrome, Edge, Brave, Arc and Opera on a computer</li>
+          </ul>
+          <a class="btn" href="#install">Install the extension</a>
+        </div>
+      </div>
+    </section>
 
-  <script type="module">
-    import { SPECIES } from './shared/species.js';
-    import { renderPlant } from './shared/plant.js';
-    document.getElementById('stage').innerHTML =
-      [[SPECIES[0], .3], [SPECIES[3], .65], [SPECIES[1], 1]].map(([s, p]) => `<div>${renderPlant(s, p, 'growing')}</div>`).join('');
-  </script>
+    <!-- Install -->
+    <section class="section" id="install">
+      <h2>Install the Chrome extension</h2>
+      <p class="lead">Grove isn't in the Chrome Web Store yet, so you install it by hand. It takes about 2 minutes, and you only do it once.</p>
+
+      <ol class="install-steps">
+        <li>
+          <h3>Download Grove</h3>
+          <p>Click the button to download a ZIP file.</p>
+          <a class="btn" href="grove-extension.zip" download>⬇ Download Grove extension (.zip)</a>
+        </li>
+        <li>
+          <h3>Unzip it</h3>
+          <p>Open your <b>Downloads</b> folder and <b>double-click</b> <code>grove-extension.zip</code>. A folder called <code>grove-extension</code> appears.</p>
+          <p class="hint">On Windows, right-click the file and choose <b>Extract All…</b>, then <b>Extract</b>.</p>
+          <p class="hint">Move the folder somewhere you'll keep it, such as Documents. Chrome loads Grove from this folder, so don't delete it.</p>
+        </li>
+        <li>
+          <h3>Open the extensions page</h3>
+          <p>Copy this address, paste it into Chrome's address bar, and press <b>Enter</b>:</p>
+          <div class="copy-row"><code id="ext-url">chrome://extensions</code><button class="ghost" data-copy="ext-url">Copy</button></div>
+          <p class="hint">Using Edge? Use <code>edge://extensions</code>. Brave: <code>brave://extensions</code>.</p>
+        </li>
+        <li>
+          <h3>Turn on Developer mode</h3>
+          <p>Find the <b>Developer mode</b> switch in the <b>top-right corner</b> of the page and turn it on.</p>
+          <p class="hint">In Edge, the switch is in the left sidebar. Developer mode just lets you add extensions from a folder on your computer.</p>
+        </li>
+        <li>
+          <h3>Load Grove</h3>
+          <p>Click <b>Load unpacked</b> (top-left), select the <code>grove-extension</code> folder you unzipped, and click <b>Select</b>.</p>
+          <p class="hint">Pick the folder itself, not the .zip file. If Chrome says "Manifest file is missing", you picked the wrong folder. Open it and make sure it contains a file named <code>manifest.json</code>.</p>
+        </li>
+        <li>
+          <h3>Pin it to your toolbar</h3>
+          <p>Click the <b>puzzle-piece icon 🧩</b> at the top-right of Chrome, then click the <b>pin 📌</b> next to Grove. A 🌱 now appears in your toolbar. Click it to start focusing.</p>
+        </li>
+      </ol>
+
+      <div class="note">
+        <b>Updating to a new version:</b> download the ZIP again, unzip it, and replace your old <code>grove-extension</code> folder with the new one. Then open <code>chrome://extensions</code> and click the ↻ reload icon on Grove's card. Your garden is kept.
+      </div>
+    </section>
+
+    <!-- How to use -->
+    <section class="section" id="how">
+      <h2>How to use Grove</h2>
+      <ol class="steps">
+        <li><h3>Plant</h3>Click 🌱 in your toolbar (or open the web app). Drag the slider to pick a time, choose a plant and a tag, then press <b>Plant &amp; focus</b>.</li>
+        <li><h3>Focus</h3>Get to work. If you open a blocked site, Grove shows your growing plant and the time left instead. Press <b>Back to focus</b> to return.</li>
+        <li><h3>Grow</h3>When the timer ends, your plant is fully grown and joins your garden. Hit milestones to earn rare species.</li>
+      </ol>
+
+      <h3 class="sub-h">What makes a plant wither?</h3>
+      <div class="two">
+        <div class="option compact">
+          <h4>🌐 In the web app</h4>
+          <p>Switching to another tab or app for more than <b>10 seconds</b>, or pressing <b>Give up</b>. You can change the 10 seconds in Settings.</p>
+        </div>
+        <div class="option compact">
+          <h4>🧩 In the extension</h4>
+          <p>Only pressing <b>Give up</b>. Other tabs are fine, but blocked sites stay blocked until your plant is grown.</p>
+        </div>
+      </div>
+
+      <h3 class="sub-h">Your dashboard</h3>
+      <p class="lead">In the extension, click <b>Open garden, stats &amp; collection →</b> at the bottom of the popup. In the web app, scroll below the timer.</p>
+      <div class="tabs-explained">
+        <div><b>🏝️ Garden</b><span>Your plants on an island. Switch between Day, Week, Month, Year and All time, and use ‹ › to look back. Hover over a plant for details.</span></div>
+        <div><b>🌳 Grove</b><span>Every session as a small tile, grouped by day.</span></div>
+        <div><b>📊 Stats</b><span>Total focus time, plants grown, your streak, a 7-day chart and time per tag.</span></div>
+        <div><b>🏆 Collection</b><span>All 51 species, with progress toward the rare ones.</span></div>
+        <div><b>⚙️ Settings</b><span>Edit your tags, the sites to block (extension only) and the grace period. Back up your garden with Export data.</span></div>
+      </div>
+    </section>
+
+    <!-- Species -->
+    <section class="section" id="species">
+      <h2>51 plants to grow</h2>
+      <p class="lead">Pick any free plant for each session. Rare and epic plants unlock as you focus, and once you've earned one it's yours for good.</p>
+      <div id="species-gallery"></div>
+    </section>
+
+    <!-- Privacy -->
+    <section class="section">
+      <div class="privacy">
+        <div class="ico">🔒</div>
+        <div>
+          <h2>Your data stays with you</h2>
+          <p>Grove has no accounts, servers, ads or tracking. Your sessions and garden are saved only in your own browser. The extension uses its permissions only to block the sites <i>you</i> choose during a focus session. It never reads or sends your browsing anywhere.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <h2>Questions</h2>
+      <div class="faq">
+        <details><summary>Is Grove free?</summary><p>Yes, completely. There's no paid version, no ads and no account.</p></details>
+        <details><summary>Why isn't it in the Chrome Web Store?</summary><p>It isn't yet. Until it is, the install steps above add it directly from the downloaded folder. It's the same extension either way.</p></details>
+        <details><summary>Chrome says the extension needs to "read and change all your data on all websites". Why?</summary><p>Chrome shows that warning for any extension that can block websites, because it can't know in advance which sites you'll block. Grove only uses this to redirect the sites on your block list during a focus session. It doesn't read pages, record your history or send anything anywhere.</p></details>
+        <details><summary>Chrome shows a "Disable developer mode extensions" message. Is something wrong?</summary><p>No. Chrome shows this reminder for every extension installed from a folder rather than the store. You can close it. Don't click <b>Disable</b>, or Grove will turn off.</p></details>
+        <details><summary>How do I change which sites are blocked?</summary><p>Click 🌱 in your toolbar, then <b>Open garden, stats &amp; collection →</b>. Go to <b>⚙️ Settings</b>, edit the list of blocked sites (one per line, for example <code>youtube.com</code>), and click <b>Save</b>.</p></details>
+        <details><summary>Does it work on my phone?</summary><p>The web app works in any phone browser. Keep the page open while you focus, because switching apps for more than 10 seconds withers your plant. The extension works only in desktop browsers.</p></details>
+        <details><summary>Does it work in Safari or Firefox?</summary><p>The web app does. The extension works in Chrome and other Chromium browsers (Edge, Brave, Arc, Opera). Firefox support is planned.</p></details>
+        <details><summary>Will I lose my garden if I clear my browser data?</summary><p>Yes. Your garden lives in your browser, so clearing site data, or removing the extension, deletes it. Back it up from <b>⚙️ Settings → Export data</b>, and bring it back with <b>Import data</b>.</p></details>
+        <details><summary>Can I use the web app and the extension together?</summary><p>Yes, but each keeps its own garden. To move your garden from one to the other, export it from one and import it into the other.</p></details>
+        <details><summary>How do I uninstall the extension?</summary><p>Open <code>chrome://extensions</code>, find Grove and click <b>Remove</b>. You can then delete the <code>grove-extension</code> folder.</p></details>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section cta-final">
+      <h2>Ready to grow something?</h2>
+      <div class="ctas center">
+        <a class="btn" href="app.html">▶ Start focusing now</a>
+        <a class="btn ghost" href="#install">🧩 Get the extension</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    🌱 Grove · Grow something while you work ·
+    <a id="source-link" href="#">Source code</a>
+  </footer>
+
+  <script type="module" src="landing.js"></script>
 </body>
 </html>

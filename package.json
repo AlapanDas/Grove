@@ -5,7 +5,8 @@
   "scripts": {
     "sync": "./scripts/sync-shared.sh",
     "icons": "python3 scripts/make-icons.py",
-    "dev": "./scripts/sync-shared.sh && python3 -m http.server 5173 -d web",
-    "docs": "node scripts/make-docs.mjs"
+    "dev": "sh scripts/package-extension.sh && python3 -m http.server 5173 -d web",
+    "docs": "node scripts/make-docs.mjs",
+    "package": "sh scripts/package-extension.sh"
   }
 }

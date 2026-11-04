@@ -3,6 +3,7 @@ a { color: inherit; }
 .nav .brand { font-weight: 800; font-size: 1.2rem; text-decoration: none; }
 .nav nav { display: flex; gap: 1.2rem; align-items: center; }
 .nav nav a { text-decoration: none; color: var(--muted); }
+.nav nav a.btn { color: #fff; }
 .pill { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: .3rem .9rem; font-weight: 600; }
 .btn { display: inline-block; text-decoration: none; background: var(--green); color: #fff; border-radius: 999px; padding: .7em 1.5em; font-weight: 700; }
 .btn:hover { background: var(--green-d); }
@@ -28,3 +29,75 @@ a { color: inherit; }
 .steps li::before { content: counter(s); display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--green); color: #fff; font-weight: 800; margin-bottom: .6rem; }
 footer.site { text-align: center; color: var(--muted); padding: 2rem; border-top: 1px solid var(--line); }
 @media (max-width: 760px) { .hero { grid-template-columns: 1fr; } .nav nav a:not(.btn) { display: none; } }
+
+/* ---------- Landing page guide ---------- */
+html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
+.nav { flex-wrap: wrap; gap: .6rem; }
+.nav nav { flex-wrap: wrap; }
+.eyebrow { display: inline-block; background: #e3f2dd; color: var(--green-d); font-weight: 700; font-size: .85rem; padding: .3em .9em; border-radius: 999px; margin-bottom: 1rem; }
+.lead { color: var(--muted); font-size: 1.1rem; max-width: 60ch; margin: -.8rem 0 1.5rem; }
+.sub-h { margin: 2.5rem 0 1rem; font-size: 1.3rem; }
+.garden-scene.demo { box-shadow: 0 10px 30px rgba(34, 51, 42, .08); }
+
+.stages { display: grid; grid-template-columns: repeat(5, 1fr); gap: .8rem; }
+.stages figure, .gallery figure { margin: 0; text-align: center; }
+.stages figcaption { font-weight: 600; margin-top: .3rem; }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.option { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 1.6rem; display: flex; flex-direction: column; gap: .4rem; }
+.option.featured { border: 2px solid var(--green); }
+.option .ico { font-size: 2rem; }
+.option h3, .option h4 { margin: .2rem 0; }
+.option .tagline { color: var(--muted); margin: 0 0 .4rem; }
+.option ul { list-style: none; padding: 0; margin: 0 0 1.2rem; display: grid; gap: .45rem; }
+.option .btn { align-self: flex-start; margin-top: auto; }
+.option.compact p { margin: 0; color: var(--muted); }
+.badge { position: absolute; top: -12px; right: 18px; background: var(--green); color: #fff; font-size: .78rem; font-weight: 700; padding: .25em .8em; border-radius: 999px; }
+
+.install-steps { counter-reset: s; list-style: none; padding: 0; display: grid; gap: .8rem; max-width: 760px; }
+.install-steps li { counter-increment: s; position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.3rem 1.4rem 1.3rem 4.4rem; }
+.install-steps li::before { content: counter(s); position: absolute; left: 1.3rem; top: 1.25rem; width: 2.2rem; height: 2.2rem; display: grid; place-items: center; border-radius: 50%; background: var(--green); color: #fff; font-weight: 800; }
+.install-steps h3 { margin: .2rem 0 .4rem; }
+.install-steps p { margin: .3rem 0; }
+.install-steps .btn { margin-top: .5rem; }
+.hint { color: var(--muted); font-size: .92rem; }
+code { background: #ece7da; padding: .1em .45em; border-radius: 6px; font-size: .92em; }
+.copy-row { display: inline-flex; align-items: center; gap: .6rem; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: .4rem .4rem .4rem .9rem; margin: .3rem 0; }
+.copy-row code { background: none; padding: 0; font-size: 1.05rem; }
+.copy-row button { padding: .35em 1em; }
+.note { max-width: 760px; margin-top: 1rem; background: #eef6ff; border: 1px solid #cfe3f7; border-radius: 14px; padding: 1rem 1.2rem; }
+
+.tabs-explained { display: grid; gap: .5rem; max-width: 760px; }
+.tabs-explained div { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: .8rem 1rem; }
+.tabs-explained span { color: var(--muted); }
+
+#species-gallery h3.rarity { color: var(--r); margin: 2rem 0 .8rem; display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+#species-gallery h3.rarity small { color: var(--muted); font-weight: 400; font-size: .9rem; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: .6rem; }
+.gallery figure { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--r); border-radius: 14px; padding: .4rem .4rem .7rem; }
+.gallery figcaption { display: grid; gap: .2rem; font-size: .85rem; }
+.gallery figcaption span { color: var(--muted); font-size: .75rem; }
+
+.privacy { display: flex; gap: 1.4rem; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 1.8rem; }
+.privacy .ico { font-size: 2.6rem; }
+.privacy h2 { margin: 0 0 .5rem; font-size: 1.5rem; }
+.privacy p { margin: 0; color: var(--muted); }
+
+.faq { display: grid; gap: .5rem; max-width: 820px; }
+.faq details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: .2rem 1.2rem; }
+.faq summary { cursor: pointer; font-weight: 700; padding: .8rem 0; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::before { content: '+'; display: inline-block; width: 1.2rem; color: var(--green); font-weight: 800; }
+.faq details[open] summary::before { content: '–'; }
+.faq details p { margin: 0 0 1rem 1.2rem; color: var(--muted); }
+
+.cta-final { text-align: center; padding-bottom: 5rem; }
+.ctas.center { justify-content: center; }
+footer.site a { color: var(--green-d); }
+
+@media (max-width: 760px) {
+  .stages { grid-template-columns: repeat(3, 1fr); }
+  .tabs-explained div { grid-template-columns: 1fr; gap: .2rem; }
+  .install-steps li { padding-left: 1.3rem; padding-top: 3.8rem; }
+  .privacy { flex-direction: column; }
+}

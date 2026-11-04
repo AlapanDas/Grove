@@ -164,10 +164,11 @@ npm run sync
 
 | Command | What it does |
 |---|---|
-| `npm run dev` | Syncs shared code and serves the website at http://localhost:5173 |
+| `npm run dev` | Syncs shared code, builds the extension ZIP and serves the website at http://localhost:5173 |
 | `npm run sync` | Copies `shared/` into both apps |
 | `npm run icons` | Regenerates the extension icons |
 | `npm run docs` | Regenerates the README images |
+| `npm run package` | Builds `web/grove-extension.zip`, the extension download offered on the website |
 
 ---
 
