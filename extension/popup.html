@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="shared/ui.css">
+  <style>
+    body { width: 320px; padding: 1rem; }
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; }
+    header h1 { font-size: 1.1rem; margin: 0; }
+    .timer .plant-wrap { width: 180px; }
+    .timer .clock { font-size: 2.4rem; }
+    footer { display: flex; justify-content: center; margin-top: .5rem; }
+    footer a { color: var(--muted); font-size: .85rem; }
+    .mini-garden { margin-top: .6rem; }
+    .mini-head { display: flex; justify-content: space-between; font-size: .85rem; margin-bottom: .3rem; }
+    .mini-head span { color: var(--muted); }
+    #garden { display: block; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+  <header><h1>🌱 Grove</h1><span id="coins"></span></header>
+  <div class="timer" id="timer"></div>
+  <section class="mini-garden">
+    <div class="mini-head"><strong>Today's garden</strong><span id="today"></span></div>
+    <a href="app.html?tab=garden" target="_blank" id="garden" title="Open full garden"></a>
+  </section>
+  <footer><a href="app.html?tab=garden" target="_blank">Open garden, stats &amp; collection →</a></footer>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

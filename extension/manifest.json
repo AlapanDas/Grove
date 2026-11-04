@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Grove – Focus Timer",
+  "version": "0.1.0",
+  "description": "Grow a plant while you focus. Distracting sites are blocked until it's fully grown.",
+  "action": { "default_popup": "popup.html", "default_icon": { "16": "icons/16.png", "48": "icons/48.png", "128": "icons/128.png" } },
+  "icons": { "16": "icons/16.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "background": { "service_worker": "background.js", "type": "module" },
+  "options_page": "app.html",
+  "permissions": ["storage", "alarms", "declarativeNetRequest", "notifications"],
+  "host_permissions": ["<all_urls>"],
+  "web_accessible_resources": [{ "resources": ["blocked.html", "blocked.js", "shared/*"], "matches": ["<all_urls>"] }]
+}

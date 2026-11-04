@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grove: grow a garden by staying focused</title>
+  <meta name="description" content="A focus timer that grows a plant while you work. Leave to get distracted and it withers.">
+  <link rel="stylesheet" href="shared/ui.css">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="index.html">🌱 Grove</a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a class="btn" href="app.html">Start focusing</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Stay focused.<br>Grow a garden.</h1>
+      <p>Plant a seed when you start working. It grows while you focus and withers if you wander off to distracting sites.</p>
+      <div class="ctas">
+        <a class="btn" href="app.html">Open the web app</a>
+        <a class="btn ghost" href="#extension">Get the Chrome extension</a>
+      </div>
+    </div>
+    <div class="stage" id="stage"></div>
+  </section>
+
+  <section class="section" id="features">
+    <h2>Everything you need to focus</h2>
+    <div class="features">
+      <div class="feature"><div class="ico">⏳</div><h3>Focus timer</h3><p>Choose 5 to 180 minutes. Your plant grows from seed to full size in real time.</p></div>
+      <div class="feature"><div class="ico">🚫</div><h3>Site blocking</h3><p>The extension blocks your distraction list until the session ends.</p></div>
+      <div class="feature"><div class="ico">🥀</div><h3>Real stakes</h3><p>Give up or leave the tab for too long and your plant withers. It stays in your grove as a reminder.</p></div>
+      <div class="feature"><div class="ico">🌈</div><h3>51 species, all free</h3><p>Plant any of 43 colorful species from day one. Earn 8 rare ones by hitting focus milestones.</p></div>
+      <div class="feature"><div class="ico">🏷️</div><h3>Tags</h3><p>Tag sessions as Study, Work, Reading, or your own labels.</p></div>
+      <div class="feature"><div class="ico">📊</div><h3>Stats &amp; streaks</h3><p>See daily totals, a 7-day chart, time per tag, and your streak.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li><h3>Plant</h3>Pick a duration, a species, and a tag, then press <b>Plant &amp; focus</b>.</li>
+      <li><h3>Focus</h3>Blocked sites redirect to a reminder, and your plant keeps growing.</li>
+      <li><h3>Grow</h3>When the timer ends, the plant joins your grove. Keep going to earn rare species.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="extension">
+    <h2>Chrome extension</h2>
+    <div class="feature">
+      <p>Get the timer in your toolbar, with real site blocking. While the extension is in development, install it by:
+        opening <code>chrome://extensions</code>, turning on <b>Developer mode</b>, choosing <b>Load unpacked</b>,
+        and selecting the <code>extension/</code> folder.</p>
+    </div>
+  </section>
+
+  <footer class="site">🌱 Grove · Grow something while you work</footer>
+
+  <script type="module">
+    import { SPECIES } from './shared/species.js';
+    import { renderPlant } from './shared/plant.js';
+    document.getElementById('stage').innerHTML =
+      [[SPECIES[0], .3], [SPECIES[3], .65], [SPECIES[1], 1]].map(([s, p]) => `<div>${renderPlant(s, p, 'growing')}</div>`).join('');
+  </script>
+</body>
+</html>
