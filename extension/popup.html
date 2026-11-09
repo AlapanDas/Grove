@@ -11,9 +11,18 @@
     .head-right { display: flex; align-items: center; gap: .5rem; font-size: .9rem; }
     .head-right .icon-btn { font-size: .9rem; }
     .access { margin-bottom: .5rem; }
-    .timer .row { margin: .6rem 0; }
-    .timer .plant-wrap { width: 180px; }
-    .timer .clock { font-size: 2.4rem; }
+    .timer .row { margin: .45rem 0; }
+    /* Compact timer for the popup */
+    .timer .plant-wrap { width: 128px; }
+    .timer .clock { font-size: 2.1rem; line-height: 1.1; }
+    .timer input[type=range] { width: 210px; }
+    .timer .row { gap: .4rem; flex-wrap: nowrap; }
+    .timer .row select { font-size: .85rem; padding: .35em .5em; min-width: 0; }
+    .timer .row button { padding: .45em 1.1em; }
+    .timer .row .icon-btn { padding: .3em .45em; font-size: .95rem; }
+    .timer .chip { font-size: .82rem; padding: .38em .75em; white-space: nowrap; flex-shrink: 0; }
+    .timer .sub { font-size: .8rem; margin: .35rem 0; }
+    .timer .banner { font-size: .85rem; padding: .4rem .7rem; }
     footer { display: flex; justify-content: center; margin-top: .5rem; }
     footer a { color: var(--muted); font-size: .85rem; }
     .mini-garden { margin-top: .6rem; }
