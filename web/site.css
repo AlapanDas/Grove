@@ -95,6 +95,11 @@ code { background: var(--code); padding: .1em .45em; border-radius: 6px; font-si
 .cta-final { text-align: center; padding-bottom: 5rem; }
 .ctas.center { justify-content: center; }
 footer.site a { color: var(--green-d); }
+footer.site .credit { margin: .8rem 0 .9rem; }
+footer.site .credit strong { color: var(--ink); }
+footer.site a.coffee { display: inline-block; background: #ffdd00; color: #1f1a00; font-weight: 700; text-decoration: none;
+  border-radius: 999px; padding: .5em 1.2em; transition: transform .1s, filter .15s; }
+footer.site a.coffee:hover { filter: brightness(.95); transform: translateY(-1px); }
 
 @media (max-width: 760px) {
   .stages { grid-template-columns: repeat(3, 1fr); }
