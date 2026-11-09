@@ -5,6 +5,12 @@ import { renderPlant } from './plant.js';
 const DAY = 86400000;
 const MAX_SIDE = 20; // at most 400 plots
 
+// Scene colors read CSS variables from ui.css (so the garden follows light/dark mode), with fallbacks for standalone SVGs.
+const GRASS_A = 'fill="#9ad985" style="fill:var(--grass-a,#9ad985)"';
+const GRASS_B = 'fill="#8fd07a" style="fill:var(--grass-b,#8fd07a)"';
+const STARS = [[60, 40, 1.6], [120, 110, 1.2], [210, 30, 1.8], [300, 80, 1.1], [380, 26, 1.5], [460, 64, 1.3], [520, 20, 1.1],
+  [610, 120, 1.4], [760, 140, 1.2], [770, 30, 1.6], [40, 150, 1.1], [250, 140, 1.3]];
+
 // ---------- periods ----------
 export const RANGES = { day: 'Day', week: 'Week', month: 'Month', year: 'Year', all: 'All time' };
 
@@ -48,19 +54,20 @@ export function renderGarden(sessions, opts = {}) {
   const [lx, ly] = pos(0, n), [bx, by] = pos(n, n), [rx, ry] = pos(n, 0);
   let svg = `
     <defs>
-      <linearGradient id="gsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe6ff"/><stop offset="1" stop-color="#f4f1e8"/></linearGradient>
+      <linearGradient id="gsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe6ff" style="stop-color:var(--sky-top,#bfe6ff)"/><stop offset="1" stop-color="#f4f1e8" style="stop-color:var(--sky-bottom,#f4f1e8)"/></linearGradient>
     </defs>
     <rect width="${W}" height="${H}" fill="url(#gsky)"/>
-    ${opts.compact ? '' : `<circle cx="700" cy="70" r="34" fill="#ffe28a"/><circle cx="700" cy="70" r="48" fill="#ffe28a" opacity=".3"/>
-    <g fill="#fff" opacity=".85"><ellipse cx="140" cy="70" rx="46" ry="16"/><ellipse cx="170" cy="60" rx="30" ry="16"/><ellipse cx="560" cy="110" rx="38" ry="12"/><ellipse cx="586" cy="102" rx="24" ry="12"/></g>`}
-    <polygon points="${lx},${ly} ${bx},${by} ${bx},${by + depth} ${lx},${ly + depth}" fill="#a87b52"/>
-    <polygon points="${bx},${by} ${rx},${ry} ${rx},${ry + depth} ${bx},${by + depth}" fill="#8a6142"/>
+    <g fill="#fff" style="opacity:var(--stars,0)">${STARS.map(([x, y, r]) => `<circle cx="${x}" cy="${y * (opts.compact ? .6 : 1)}" r="${r}"/>`).join('')}</g>
+    ${opts.compact ? '' : `<circle cx="700" cy="70" r="34" fill="#ffe28a" style="fill:var(--sun,#ffe28a)"/><circle cx="700" cy="70" r="48" fill="#ffe28a" style="fill:var(--sun,#ffe28a);opacity:var(--halo,.3)"/>
+    <g fill="#fff" opacity=".85" style="fill:var(--cloud,#fff);opacity:var(--cloud-op,.85)"><ellipse cx="140" cy="70" rx="46" ry="16"/><ellipse cx="170" cy="60" rx="30" ry="16"/><ellipse cx="560" cy="110" rx="38" ry="12"/><ellipse cx="586" cy="102" rx="24" ry="12"/></g>`}
+    <polygon points="${lx},${ly} ${bx},${by} ${bx},${by + depth} ${lx},${ly + depth}" fill="#a87b52" style="fill:var(--soil-a,#a87b52)"/>
+    <polygon points="${bx},${by} ${rx},${ry} ${rx},${ry + depth} ${bx},${by + depth}" fill="#8a6142" style="fill:var(--soil-b,#8a6142)"/>
     <path d="M${lx} ${ly + depth * .45} L${bx} ${by + depth * .45} L${rx} ${ry + depth * .45}" stroke="#6e4a30" stroke-width="2" fill="none" opacity=".35"/>`;
 
   // Grass tiles, checkerboard.
   for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
     const [x, y] = pos(i, j);
-    svg += `<polygon points="${x},${y} ${x + tw / 2},${y + th / 2} ${x},${y + th} ${x - tw / 2},${y + th / 2}" fill="${(i + j) % 2 ? '#8fd07a' : '#9ad985'}"/>`;
+    svg += `<polygon points="${x},${y} ${x + tw / 2},${y + th / 2} ${x},${y + th} ${x - tw / 2},${y + th / 2}" ${(i + j) % 2 ? GRASS_B : GRASS_A}/>`;
   }
 
   // Plots in back-to-front order, so later (front) plants overlap earlier ones correctly.
@@ -81,7 +88,7 @@ export function renderGarden(sessions, opts = {}) {
       <ellipse cx="${x}" cy="${baseY}" rx="${tw * .22}" ry="${th * .2}" fill="#000" opacity=".12"/>${plant}</g>`;
   });
 
-  if (!list.length) svg += `<text x="${cx}" y="${top + n * th / 2 + 6}" text-anchor="middle" font-size="${opts.compact ? 26 : 20}" fill="#2f6e3c" font-family="system-ui, sans-serif" font-weight="600">${opts.emptyText || 'Nothing planted yet'}</text>`;
+  if (!list.length) svg += `<text x="${cx}" y="${top + n * th / 2 + 6}" text-anchor="middle" font-size="${opts.compact ? 26 : 20}" fill="#2f6e3c" style="fill:var(--scene-text,#2f6e3c)" font-family="system-ui, sans-serif" font-weight="600">${opts.emptyText || 'Nothing planted yet'}</text>`;
 
   return `<svg class="garden-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Garden with ${list.length} plants">${svg}</svg>`;
 }

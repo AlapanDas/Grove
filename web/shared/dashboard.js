@@ -89,12 +89,44 @@ export function mountDashboard(root, engine, opts = {}) {
     },
 
     settings(d) {
+      const p = d.settings.pomodoro;
+      const allow = d.settings.blockMode === 'allowlist';
+      const theme = window.groveTheme?.get() || 'system';
       return `<form class="settings">
-          <label>Tags (comma separated)<input name="tags" value="${esc(d.tags.join(', '))}"></label>
-          <label>Grace period before a plant withers when you leave (seconds)
-            <input name="grace" type="number" min="0" max="120" value="${d.settings.graceSeconds}"></label>
-          ${opts.blocklist ? `<label>Blocked sites during focus (one per line)<textarea name="blocklist" rows="8">${esc(d.blocklist.join('\n'))}</textarea></label>` : ''}
-          <button type="submit">Save</button> <span class="saved" hidden>Saved ✓</span>
+          <fieldset><legend>Appearance</legend>
+            <label>Theme<select name="theme" data-theme-select>
+              ${[['system', 'Match my system'], ['light', '☀️ Light'], ['dark', '🌙 Dark']].map(([v, l]) =>
+                `<option value="${v}" ${v === theme ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+          </fieldset>
+          <fieldset><legend>Focus</legend>
+            <label>Tags (comma separated)<input name="tags" value="${esc(d.tags.join(', '))}"></label>
+            ${opts.blocklist ? '' : `<label>Grace period before a plant withers when you leave (seconds)
+              <input name="grace" type="number" min="0" max="120" value="${d.settings.graceSeconds}"></label>`}
+            <label>Longest pause, after which the timer resumes on its own (minutes)
+              <input name="pauseMinutes" type="number" min="1" max="30" value="${d.settings.pauseMinutes}"></label>
+            <label>Ambient sound volume
+              <input name="volume" type="range" min="0" max="1" step="0.05" value="${d.settings.volume}"></label>
+          </fieldset>
+          <fieldset><legend>🍅 Pomodoro</legend>
+            <label class="check"><input type="checkbox" name="pomoEnabled" ${p.enabled ? 'checked' : ''}> Take a break after every focus session</label>
+            <div class="grid3">
+              <label>Short break (min)<input name="shortBreak" type="number" min="1" max="60" value="${p.shortBreak}"></label>
+              <label>Long break (min)<input name="longBreak" type="number" min="1" max="90" value="${p.longBreak}"></label>
+              <label>Long break every<input name="longEvery" type="number" min="2" max="12" value="${p.longEvery}"></label>
+            </div>
+          </fieldset>
+          ${opts.blocklist ? `<fieldset><legend>Site blocking</legend>
+            <div class="seg-radio">
+              <label><input type="radio" name="blockMode" value="blocklist" ${allow ? '' : 'checked'}> Block list</label>
+              <label><input type="radio" name="blockMode" value="allowlist" ${allow ? 'checked' : ''}> Allow list</label>
+            </div>
+            <label data-mode="blocklist" ${allow ? 'hidden' : ''}>Blocked during focus (one site per line)
+              <textarea name="blocklist" rows="7">${esc(d.blocklist.join('\n'))}</textarea></label>
+            <label data-mode="allowlist" ${allow ? '' : 'hidden'}>Allowed during focus, everything else is blocked (one site per line)
+              <textarea name="allowlist" rows="7">${esc(d.allowlist.join('\n'))}</textarea></label>
+            <p class="access" hidden></p>
+          </fieldset>` : ''}
+          <div><button type="submit">Save</button> <span class="saved" hidden>Saved ✓</span></div>
         </form>
         <div class="data-tools"><button data-export>Export data</button>
           <label class="file-btn">Import data<input type="file" accept="application/json" data-import hidden></label></div>`;
@@ -108,15 +140,50 @@ export function mountDashboard(root, engine, opts = {}) {
     },
     settings(el) {
       const f = el.querySelector('form');
+      const sites = (v) => v.split('\n').map((s) => s.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/[/:].*$/, '')).filter(Boolean);
+      const num = (v, min, max) => Math.min(max, Math.max(min, Math.round(Number(v)) || min));
+      const saved = el.querySelector('.saved');
+      f.oninput = () => (saved.hidden = true);
+
+      // Extension: show whether Grove may redirect the sites it needs to, with a button to grant access.
+      const access = el.querySelector('.access');
+      const pseudo = () => ({ blocklist: sites(f.blocklist.value), allowlist: sites(f.allowlist.value), settings: { blockMode: f.blockMode.value } });
+      async function showAccess() {
+        if (!access || !opts.access) return;
+        const ok = await opts.access.has(pseudo()).catch(() => false);
+        access.hidden = ok;
+        access.innerHTML = '⚠️ Grove doesn\'t have permission to block these sites yet. <button type="button" class="ghost">Allow access</button>';
+        access.querySelector('button').onclick = () => opts.access.request(pseudo()).catch(() => false).then(showAccess);
+      }
+      if (f.blockMode) {
+        f.querySelectorAll('[name=blockMode]').forEach((r) => (r.onchange = () => {
+          f.querySelectorAll('[data-mode]').forEach((x) => (x.hidden = x.dataset.mode !== f.blockMode.value));
+          showAccess();
+        }));
+        showAccess();
+      }
+
       f.onsubmit = async (e) => {
         e.preventDefault();
         const patch = {
           tags: f.tags.value.split(',').map((t) => t.trim()).filter(Boolean),
-          settings: { graceSeconds: Math.max(0, Number(f.grace.value) || 0) },
+          settings: {
+            pauseMinutes: num(f.pauseMinutes.value, 1, 30),
+            volume: Math.min(1, Math.max(0, Number(f.volume.value))),
+            pomodoro: { enabled: f.pomoEnabled.checked, shortBreak: num(f.shortBreak.value, 1, 60),
+              longBreak: num(f.longBreak.value, 1, 90), longEvery: num(f.longEvery.value, 2, 12) },
+          },
         };
-        if (f.blocklist) patch.blocklist = f.blocklist.value.split('\n').map((s) => s.trim().replace(/^https?:\/\//, '').replace(/\/.*$/, '')).filter(Boolean);
+        if (f.grace) patch.settings.graceSeconds = num(f.grace.value, 0, 120);
+        if (f.blocklist) {
+          patch.blocklist = sites(f.blocklist.value);
+          patch.allowlist = sites(f.allowlist.value);
+          patch.settings.blockMode = f.blockMode.value;
+          // Must run inside the click, before any await, or the browser refuses to show the permission prompt.
+          opts.access?.request(pseudo()).catch(() => false).then(showAccess);
+        }
         await engine.update(patch);
-        el.querySelector('.saved').hidden = false;
+        saved.hidden = false;
         opts.onChange?.();
       };
       el.querySelector('[data-export]').onclick = async () => {

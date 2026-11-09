@@ -1,4 +1,4 @@
-import { engine, send } from './store.js';
+import { engine, send, hasAccess, requestAccess } from './store.js';
 import { mountTimer } from './shared/timer-view.js';
 import { SPECIES } from './shared/species.js';
 import { periodBounds, sessionsIn, renderGarden } from './shared/garden.js';
@@ -15,12 +15,30 @@ function renderMiniGarden(d) {
 
 const el = document.getElementById('timer');
 const coins = document.getElementById('coins');
+const access = document.getElementById('access');
+let last = null; // latest data, kept so permission requests can run synchronously inside a click
+
+const showAccess = async (d) => { access.hidden = await hasAccess(d).catch(() => true); };
+document.getElementById('grant').onclick = () => last && requestAccess(last).catch(() => false).then(() => showAccess(last));
 
 mountTimer(el, {
   getData: () => engine.getData(),
-  start: (opts) => send('start', opts),
+  start: (opts) => {
+    // Ask for site access in the same click that starts the session. The session starts either way.
+    if (last) requestAccess(last).catch(() => false).then(() => showAccess(last));
+    return send('start', opts);
+  },
   giveUp: () => send('giveUp', { reason: 'gave-up' }),
+  pause: () => send('pause'),
+  resume: () => send('resume'),
+  endBreak: () => send('endBreak'),
+  saveSettings: async (patch) => { await engine.update(patch); await send('settingsChanged'); },
   settle: () => send('tick'),
-  onData: (d) => { coins.textContent = `🌿 ${d.owned.length}/${SPECIES.length}`; renderMiniGarden(d); },
-  hint: 'Blocked sites stay blocked until your plant is grown.',
+  onData: (d) => {
+    last = d;
+    coins.textContent = `🌿 ${d.owned.length}/${SPECIES.length}`;
+    renderMiniGarden(d);
+    showAccess(d);
+  },
+  hint: 'Blocked sites stay blocked until your plant is grown. Pausing keeps them blocked.',
 });

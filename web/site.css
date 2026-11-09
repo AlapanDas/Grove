@@ -4,6 +4,7 @@ a { color: inherit; }
 .nav nav { display: flex; gap: 1.2rem; align-items: center; }
 .nav nav a { text-decoration: none; color: var(--muted); }
 .nav nav a.btn { color: #fff; }
+.nav-right { display: flex; align-items: center; gap: .6rem; }
 .pill { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: .3rem .9rem; font-weight: 600; }
 .btn { display: inline-block; text-decoration: none; background: var(--green); color: #fff; border-radius: 999px; padding: .7em 1.5em; font-weight: 700; }
 .btn:hover { background: var(--green-d); }
@@ -34,10 +35,10 @@ footer.site { text-align: center; color: var(--muted); padding: 2rem; border-top
 html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
 .nav { flex-wrap: wrap; gap: .6rem; }
 .nav nav { flex-wrap: wrap; }
-.eyebrow { display: inline-block; background: #e3f2dd; color: var(--green-d); font-weight: 700; font-size: .85rem; padding: .3em .9em; border-radius: 999px; margin-bottom: 1rem; }
+.eyebrow { display: inline-block; background: var(--soft); color: var(--green-d); font-weight: 700; font-size: .85rem; padding: .3em .9em; border-radius: 999px; margin-bottom: 1rem; }
 .lead { color: var(--muted); font-size: 1.1rem; max-width: 60ch; margin: -.8rem 0 1.5rem; }
 .sub-h { margin: 2.5rem 0 1rem; font-size: 1.3rem; }
-.garden-scene.demo { box-shadow: 0 10px 30px rgba(34, 51, 42, .08); }
+.garden-scene.demo { box-shadow: 0 10px 30px var(--shadow); }
 
 .stages { display: grid; grid-template-columns: repeat(5, 1fr); gap: .8rem; }
 .stages figure, .gallery figure { margin: 0; text-align: center; }
@@ -61,11 +62,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
 .install-steps p { margin: .3rem 0; }
 .install-steps .btn { margin-top: .5rem; }
 .hint { color: var(--muted); font-size: .92rem; }
-code { background: #ece7da; padding: .1em .45em; border-radius: 6px; font-size: .92em; }
-.copy-row { display: inline-flex; align-items: center; gap: .6rem; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: .4rem .4rem .4rem .9rem; margin: .3rem 0; }
+code { background: var(--code); padding: .1em .45em; border-radius: 6px; font-size: .92em; }
+.copy-row { display: inline-flex; align-items: center; gap: .6rem; background: var(--field); border: 1px solid var(--line); border-radius: 12px; padding: .4rem .4rem .4rem .9rem; margin: .3rem 0; }
 .copy-row code { background: none; padding: 0; font-size: 1.05rem; }
 .copy-row button { padding: .35em 1em; }
-.note { max-width: 760px; margin-top: 1rem; background: #eef6ff; border: 1px solid #cfe3f7; border-radius: 14px; padding: 1rem 1.2rem; }
+.note { max-width: 760px; margin-top: 1rem; background: var(--note); border: 1px solid var(--note-line); border-radius: 14px; padding: 1rem 1.2rem; }
 
 .tabs-explained { display: grid; gap: .5rem; max-width: 760px; }
 .tabs-explained div { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: .8rem 1rem; }

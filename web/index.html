@@ -6,6 +6,7 @@
   <title>Grove: grow a garden by staying focused</title>
   <meta name="description" content="A free focus timer that grows a plant while you work. Get distracted and it withers. Use it in your browser or as a Chrome extension that blocks distracting sites.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+  <script src="shared/theme.js"></script>
   <link rel="stylesheet" href="shared/ui.css">
   <link rel="stylesheet" href="site.css">
 </head>
@@ -19,6 +20,7 @@
       <a href="#species">Species</a>
       <a href="#faq">FAQ</a>
       <a class="btn" href="app.html">Start focusing</a>
+      <button class="icon-btn" data-theme-toggle aria-label="Toggle dark mode">🌙</button>
     </nav>
   </header>
 
@@ -50,6 +52,9 @@
       <div class="features">
         <div class="feature"><div class="ico">⏳</div><h3>Focus timer</h3><p>Choose 5 to 180 minutes. Your plant grows from seed to full size in real time.</p></div>
         <div class="feature"><div class="ico">🚫</div><h3>Block distractions</h3><p>The extension blocks sites like YouTube, Reddit and Instagram until your session ends.</p></div>
+        <div class="feature"><div class="ico">🍅</div><h3>Pause &amp; Pomodoro</h3><p>Pause for a moment without losing your plant, or turn on Pomodoro mode for automatic short and long breaks.</p></div>
+        <div class="feature"><div class="ico">🌧️</div><h3>Ambient sounds</h3><p>Rain, stream, wind, campfire or brown noise while you focus. Generated in your browser, nothing to download.</p></div>
+        <div class="feature"><div class="ico">🌙</div><h3>Light &amp; dark</h3><p>Follows your system theme, or switch any time. At night your garden sits under the stars.</p></div>
         <div class="feature"><div class="ico">🥀</div><h3>Real stakes</h3><p>Give up or get distracted and your plant withers. It stays in your garden as a reminder.</p></div>
         <div class="feature"><div class="ico">🏝️</div><h3>Your garden</h3><p>See all your plants on a little island, by day, week, month, year or all time.</p></div>
         <div class="feature"><div class="ico">🌈</div><h3>51 species</h3><p>43 colorful plants are free from day one. Earn 8 rare ones by hitting focus milestones.</p></div>
@@ -200,11 +205,11 @@
       <div class="faq">
         <details><summary>Is Grove free?</summary><p>Yes, completely. There's no paid version, no ads and no account.</p></details>
         <details><summary>Why isn't it in the Chrome Web Store?</summary><p>It isn't yet. Until it is, the install steps above add it directly from the downloaded folder. It's the same extension either way.</p></details>
-        <details><summary>Chrome says the extension needs to "read and change all your data on all websites". Why?</summary><p>Chrome shows that warning for any extension that can block websites, because it can't know in advance which sites you'll block. Grove only uses this to redirect the sites on your block list during a focus session. It doesn't read pages, record your history or send anything anywhere.</p></details>
+        <details><summary>Does the extension need access to all my websites?</summary><p>It doesn't any more. Grove asks for access only to the sites on your block list, when you start a session or save the list. Allow-list mode needs access to all sites, because it blocks everything not on the list. Grove only uses this access to redirect blocked sites during a focus session. It doesn't read pages, record your history or send anything anywhere.</p></details>
         <details><summary>Chrome shows a "Disable developer mode extensions" message. Is something wrong?</summary><p>No. Chrome shows this reminder for every extension installed from a folder rather than the store. You can close it. Don't click <b>Disable</b>, or Grove will turn off.</p></details>
         <details><summary>How do I change which sites are blocked?</summary><p>Click 🌱 in your toolbar, then <b>Open garden, stats &amp; collection →</b>. Go to <b>⚙️ Settings</b>, edit the list of blocked sites (one per line, for example <code>youtube.com</code>), and click <b>Save</b>.</p></details>
         <details><summary>Does it work on my phone?</summary><p>The web app works in any phone browser. Keep the page open while you focus, because switching apps for more than 10 seconds withers your plant. The extension works only in desktop browsers.</p></details>
-        <details><summary>Does it work in Safari or Firefox?</summary><p>The web app does. The extension works in Chrome and other Chromium browsers (Edge, Brave, Arc, Opera). Firefox support is planned.</p></details>
+        <details><summary>Does it work in Safari or Firefox?</summary><p>The web app works in both. The extension works in Chrome, other Chromium browsers (Edge, Brave, Arc, Opera) and Firefox 128 or later. Safari isn't supported yet.</p></details>
         <details><summary>Will I lose my garden if I clear my browser data?</summary><p>Yes. Your garden lives in your browser, so clearing site data, or removing the extension, deletes it. Back it up from <b>⚙️ Settings → Export data</b>, and bring it back with <b>Import data</b>.</p></details>
         <details><summary>Can I use the web app and the extension together?</summary><p>Yes, but each keeps its own garden. To move your garden from one to the other, export it from one and import it into the other.</p></details>
         <details><summary>How do I uninstall the extension?</summary><p>Open <code>chrome://extensions</code>, find Grove and click <b>Remove</b>. You can then delete the <code>grove-extension</code> folder.</p></details>

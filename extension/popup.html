@@ -2,11 +2,16 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <script src="shared/theme.js"></script>
   <link rel="stylesheet" href="shared/ui.css">
   <style>
     body { width: 320px; padding: 1rem; }
     header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; }
     header h1 { font-size: 1.1rem; margin: 0; }
+    .head-right { display: flex; align-items: center; gap: .5rem; font-size: .9rem; }
+    .head-right .icon-btn { font-size: .9rem; }
+    .access { margin-bottom: .5rem; }
+    .timer .row { margin: .6rem 0; }
     .timer .plant-wrap { width: 180px; }
     .timer .clock { font-size: 2.4rem; }
     footer { display: flex; justify-content: center; margin-top: .5rem; }
@@ -18,7 +23,8 @@
   </style>
 </head>
 <body>
-  <header><h1>🌱 Grove</h1><span id="coins"></span></header>
+  <header><h1>🌱 Grove</h1><div class="head-right"><span id="coins"></span><button class="icon-btn" data-theme-toggle aria-label="Toggle dark mode">🌙</button></div></header>
+  <p class="access" id="access" hidden>⚠️ Grove needs permission to block sites. <button type="button" class="ghost" id="grant">Allow access</button></p>
   <div class="timer" id="timer"></div>
   <section class="mini-garden">
     <div class="mini-head"><strong>Today's garden</strong><span id="today"></span></div>

@@ -2,8 +2,10 @@ import { engine, send } from './store.js';
 import { speciesById } from './shared/species.js';
 import { renderPlant } from './shared/plant.js';
 import { fmtClock } from './shared/stats.js';
+import { remaining, progress } from './shared/engine.js';
 
 const $ = (id) => document.getElementById(id);
+let lastStage = -1;
 
 async function tick() {
   const d = await engine.getData();
@@ -16,10 +18,14 @@ async function tick() {
     return;
   }
   const sp = speciesById(a.species);
-  const p = (Date.now() - a.start) / (a.end - a.start);
-  $('plant').innerHTML = renderPlant(sp, p, 'growing');
-  $('msg').textContent = `Your ${sp.name} is still growing. Time left:`;
-  $('clock').textContent = fmtClock(a.end - Date.now());
+  const p = progress(a);
+  const stage = Math.floor(p * 40);
+  if (stage !== lastStage) { lastStage = stage; $('plant').innerHTML = renderPlant(sp, p, 'growing'); }
+  $('title').textContent = d.settings.blockMode === 'allowlist' ? 'This site isn’t on your allow list' : 'This site is blocked';
+  $('msg').textContent = a.pausedAt
+    ? `Your ${sp.name} is paused. Sites stay blocked until it's fully grown. Time left:`
+    : `Your ${sp.name} is still growing. Time left:`;
+  $('clock').textContent = fmtClock(remaining(a));
 }
 
 $('back').onclick = () => (history.length > 1 ? history.back() : window.close());

@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <title>Grove</title>
+  <script src="shared/theme.js"></script>
   <link rel="stylesheet" href="shared/ui.css">
-  <style>main { max-width: 900px; margin: 0 auto; padding: 2rem 1.25rem; } h1 { margin-top: 0; }</style>
+  <style>main { max-width: 900px; margin: 0 auto; padding: 2rem 1.25rem; } .top { display: flex; justify-content: space-between; align-items: center; } h1 { margin: 0 0 1rem; }</style>
 </head>
 <body>
   <main>
-    <h1>🌱 Grove</h1>
+    <div class="top"><h1>🌱 Grove</h1><button class="icon-btn" data-theme-toggle aria-label="Toggle dark mode">🌙</button></div>
     <div id="dash"></div>
   </main>
   <script type="module" src="app.js"></script>
